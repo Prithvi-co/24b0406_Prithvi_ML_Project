@@ -1,0 +1,55 @@
+
+🚧 Problems Faced & Fixes in Next Word Predictor Project (GPT-2)
+
+This file lists all the major issues encountered while building the next-word predictor using Hugging Face Transformers and how they were resolved.
+
+---
+
+🔧 Problem 1: GPT2LMHeadModel requires torch
+✅ Fix: Installed PyTorch using
+    pip install torch
+
+---
+
+🔧 Problem 2: pad_token not found error
+✅ Fix: Set pad_token as eos_token manually:
+    tokenizer.pad_token = tokenizer.eos_token
+
+---
+
+🔧 Problem 3: Trainer requires accelerate>=0.21.0
+✅ Fix: Installed/Updated accelerate with:
+    pip install accelerate -U
+
+---
+
+🔧 Problem 4: fsspec issue during dataset loading
+✅ Fix: Reinstalled fsspec:
+    pip uninstall fsspec -y
+    pip install fsspec
+
+---
+
+🔧 Problem 5: Training very slow on local CPU
+✅ Fix: Reduced batch size and epochs; also suggested running on Google Colab
+
+---
+
+🔧 Problem 6: Tokenizer Error - Asking to pad but tokenizer has no pad token
+✅ Fix: Either set pad_token = eos_token or add:
+    tokenizer.add_special_tokens({'pad_token': '[PAD]'})
+
+---
+
+🔧 Problem 7: evaluation_strategy not accepted in TrainingArguments
+✅ Fix: Upgraded transformers to a compatible version (>=4.21) using:
+    pip install transformers -U
+
+---
+
+🔧 Problem 8: Output not showing in generate()
+✅ Fix: Used correct tokenization, moved tensors to model.device, used model.generate()
+
+---
+
+📚 These were the core challenges faced during model training and inference, and resolving them helped build a solid understanding of NLP workflows and Hugging Face libraries.
